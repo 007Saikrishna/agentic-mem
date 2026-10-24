@@ -18,7 +18,9 @@ The system uses Google's `gemini-3.8-flash` to formalize raw developer input int
 
 ## 1. Local Environment Setup
 Fork the repo
+
 Clone the repository
+
 Set up a virtual environment using PowerShell:
 
 ```powershell
