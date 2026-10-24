@@ -23,5 +23,10 @@ def ask(question: str):
     answer = connection.ask_question(question)
     print(f"\n{answer}\n")
 
+@app.command()
+def forget(query: str):
+    """Semantically search and delete a rule (e.g., 'forget the commit message rule')."""
+    connection.forget_rule(query)
+
 if __name__ == "__main__":
     app()

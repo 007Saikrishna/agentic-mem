@@ -60,3 +60,35 @@ async def synthesize_answer(question: str, context_rules: list[str]) -> str:
     """
     response = await model.generate_content_async(prompt)
     return response.text
+
+
+class ConflictDetection(BaseModel):
+    has_conflict: bool
+    explanation: str
+    conflicting_rules: list[str]
+
+async def detect_conflict(new_rule: str, existing_rules: list[str]) -> dict:
+    if not existing_rules:
+        return {"has_conflict": False}
+        
+    model = genai.GenerativeModel("gemini-3.8-flash")
+    context_str = "\n".join([f"- {rule}" for rule in existing_rules])
+    
+    prompt = f"""
+    You are a strict architectural constraint checker. 
+    Evaluate if the NEW RULE directly conflicts with or contradicts any of the EXISTING RULES.
+    
+    EXISTING RULES:
+    {context_str}
+    
+    NEW RULE: {new_rule}
+    """
+    
+    response = await model.generate_content_async(
+        prompt,
+        generation_config=genai.GenerationConfig(
+            response_mime_type="application/json",
+            response_schema=ConflictDetection
+        )
+    )
+    return json.loads(response.text)

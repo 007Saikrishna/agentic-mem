@@ -11,3 +11,18 @@ def append_rule_to_file(rule_text: str):
             f.write("# Agentic Project Rules\n\n")
         f.write(f"- {rule_text}\n")
     print(f"\n[+] Rule synced to {RULES_FILE}: {rule_text}")
+
+
+def remove_rule_from_file(rule_text: str):
+    if not os.path.exists(RULES_FILE):
+        return
+        
+    with open(RULES_FILE, "r") as file:
+        lines = file.readlines()
+        
+    with open(RULES_FILE, "w") as file:
+        for line in lines:
+            # Strip markdown formatting and whitespace for an exact string match
+            clean_line = line.strip().lstrip("- ")
+            if clean_line != rule_text.strip():
+                file.write(line)

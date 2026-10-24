@@ -42,3 +42,8 @@ async def search_memories(embedding: list):
     ]
     cursor = await collection.aggregate(pipeline)
     return await cursor.to_list(length=5)
+
+async def delete_memory(content: str) -> bool:
+    # Deletes the exact rule string returned by the conflict detector
+    result = await collection.delete_one({"content": content})
+    return result.deleted_count > 0
