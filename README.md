@@ -50,7 +50,7 @@ GEMINI_API_KEY="your_google_api_key_here"
 Choose language as Python and Driver as pymongo (asynchronous) before obtaining the 
 connection string.
 You must create a Vector Search index in your Atlas cluster for the RAG `/ask` feature to work.
-1. Navigate to **Atlas Search** > **Create Search Index** > **Bring your own embeddings** >> **JSON Editor**.
+1. Navigate to **Atlas Search** > **Create Search Index** > **Bring your own embeddings** > **JSON Editor**.
 2. Target the `agent_db.agent_memories` collection.
 3. Name the index `vector_index` and apply this schema:
 
