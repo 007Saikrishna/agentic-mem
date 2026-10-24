@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+pymongo
+google-generativeai
+typer
+websockets
+python-dotenv
+typer
+requests

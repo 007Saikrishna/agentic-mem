@@ -1,0 +1,6 @@
+.env
+venv
+cli/__pycache__
+server/__pycache__
+.agent_rules.md
+test.py
